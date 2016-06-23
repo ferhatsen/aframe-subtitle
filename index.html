@@ -21,20 +21,19 @@
       <script src="https://aframe.io/releases/0.2.0/aframe.min.js"></script>
       <script src="https://rawgit.com/ngokevin/aframe-text-component/master/dist/aframe-text-component.min.js"></script>
       <script src="http://popcornjs.org/code/dist/popcorn-complete.js"></script>
-      <!-- script src="index.js"></script -->
+      <script src="index.js"></script>
   </head>
 
   <body>
-    <canvas id="scene">
-      <a-scene>
-        <a-assets>
-          <video id="video" src="Reel_Obuie_360_VR.mp4"
-                 autoplay loop></video>
-        </a-assets>
+    <a-scene>
+      <a-assets>
+        <video id="video" src="Reel_Obuie_360_VR.mp4"
+               autoplay loop></video>
+      </a-assets>
 
-        <a-videosphere src="#video" rotation="0 180 0"></a-videosphere>
-        <!-- a-entity subtitle="timeline: #video; srt: data.srt" text="example"/ -->
-      </a-scene>   
+      <a-videosphere src="#video" rotation="0 180 0"></a-videosphere>
+      <a-entity subtitle="timeline: #video; srt: data.srt"/>
+    </a-scene>   
   </body>
 </html>
 

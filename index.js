@@ -17,26 +17,30 @@ AFRAME.registerComponent('subtitle', {
    * Generally modifies the entity based on the data.
    */
   update: function (oldData) {
-    if (oldData == null || this.data.src != oldData.src)
+    if (oldData == null || this.data.timeline != oldData.timeline)
     {
       this.data.pop = Popcorn(this.data.timeline);
       this.data.pop.parseSRT( this.data.srt, function(){});
+
+      console.log (this.data.text);
 
       var el = this.el;
 
       this.data.pop.on("trackstart",
                        function(e)
                        {
-//                         el.setAttribute("text", e.text);
+                         console.log (e.text);
+                         el.setAttribute("subtitle", "text", e.text);
                        });
 
       this.data.pop.on("trackend",
                        function(e)
                        {
-//                        el.setAttribute("text", "");
+                         console.log (e.text);
+                         el.setAttribute("subtitle", "text", "...");
                        });
 
-       this.data.text = "u"
+       this.data.text = "..."
 
     }
 
