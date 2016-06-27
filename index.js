@@ -45,18 +45,24 @@ AFRAME.registerComponent('subtitle', {
     }
 
     this.el.getOrCreateObject3D('mesh', THREE.Mesh).geometry = getTextGeometry(this.data);
-  },
+  }
 
 });
 
 function getTextGeometry (data) {
-  return new THREE.TextGeometry(data.text, data);
+  var textGeometry  = new THREE.TextGeometry(data.text, data);
+
+  var direction = new THREE.Vector3(0, 0, 1);
+  var axis = new THREE.Vector3(0, 1, 0);
+  var angle = Math.PI / 3;
+
+  var modifier = new THREE.BendModifier();
+  modifier.set(direction, axis, angle).modify( textGeometry );
+
+  textGeometry.computeBoundingBox();
+  var textWidth = textGeometry.boundingBox.max.x - textGeometry.boundingBox.min.x;
+//  text3D.position.set(-0.5 * textWidth, 500, 0);
+  return textGeometry;
+
 }
 
-
-  /**
-   * We should write:
-   *     <a-entity timeline="#video" subtitle="text.srt"/>
-   * or
-   *     <a-subtitle src="text.srt" timeline="#video"/>
-   */
